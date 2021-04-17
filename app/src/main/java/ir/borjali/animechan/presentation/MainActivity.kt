@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setUpUi()
-        setUpViewModel()
+        setupUi()
+        setupViewModel()
 
     }
 
-    private fun setUpUi() {
+    private fun setupUi() {
         swipeRefreshLayout.setOnRefreshListener {
             quoteViewModel.getRandomQuotes()
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUpViewModel() {
+    private fun setupViewModel() {
         with(quoteViewModel) {
             quotesList.observe(this@MainActivity, {
                 initSpinner(it)
