@@ -7,6 +7,7 @@ import ir.borjali.animechan.domain.model.AppResult
 import ir.borjali.animechan.domain.model.Quote
 import ir.borjali.animechan.domain.repository.QuoteRepository
 import ir.borjali.animechan.util.SingleLiveEvent
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 class QuoteViewModel(private val repository: QuoteRepository) : ViewModel() {
@@ -33,5 +34,9 @@ class QuoteViewModel(private val repository: QuoteRepository) : ViewModel() {
                 is AppResult.Error -> showError.value = result.exception.message
             }
         }
+    }
+    override fun onCleared() {
+        viewModelScope.cancel()
+        super.onCleared()
     }
 }
